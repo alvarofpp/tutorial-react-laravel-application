@@ -44,7 +44,7 @@ class NewProject extends Component {
     }
 
     hasErrorFor (field) {
-        return !!this.state.errors[field]
+        return this.state.errors[field]
     }
 
     renderErrorFor (field) {

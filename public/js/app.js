@@ -70131,7 +70131,7 @@ var NewProject = /*#__PURE__*/function (_Component) {
   }, {
     key: "hasErrorFor",
     value: function hasErrorFor(field) {
-      return !!this.state.errors[field];
+      return this.state.errors[field];
     }
   }, {
     key: "renderErrorFor",
@@ -70471,7 +70471,8 @@ var SingleProject = /*#__PURE__*/function (_Component) {
       }, project.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, project.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        className: "btn btn-primary btn-sm"
+        className: "btn btn-primary btn-sm",
+        onClick: this.handleMarkProjectAsCompleted.bind(this, project.id)
       }, "Mark as completed"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         onSubmit: this.handleAddNewTask
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
