@@ -1,17 +1,24 @@
-
 import axios from 'axios'
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 class SingleProject extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
         this.state = {
             project: {},
             tasks: []
         }
+        this.handleMarkProjectAsCompleted = this.handleMarkProjectAsCompleted.bind(this)
     }
 
-    componentDidMount () {
+    handleMarkProjectAsCompleted() {
+        const {history} = this.props
+
+        axios.put(`/api/projects/${this.state.project.id}`)
+            .then(response => history.push('/'))
+    }
+
+    componentDidMount() {
         const projectId = this.props.match.params.id
 
         axios.get(`/api/projects/${projectId}`).then(response => {
@@ -22,8 +29,8 @@ class SingleProject extends Component {
         })
     }
 
-    render () {
-        const { project, tasks } = this.state
+    render() {
+        const {project, tasks} = this.state
 
         return (
             <div className='container py-4'>
@@ -38,7 +45,7 @@ class SingleProject extends Component {
                                     Mark as completed
                                 </button>
 
-                                <hr />
+                                <hr/>
 
                                 <ul className='list-group mt-3'>
                                     {tasks.map(task => (
@@ -48,7 +55,9 @@ class SingleProject extends Component {
                                         >
                                             {task.title}
 
-                                            <button className='btn btn-primary btn-sm'>
+                                            <button
+                                                className='btn btn-primary btn-sm'
+                                                onClick={this.handleMarkProjectAsCompleted} >
                                                 Mark as completed
                                             </button>
                                         </li>
